@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:bilionerapp/btn.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,6 +27,13 @@ class _MainAppState extends State<MainApp> {
     // Obtain shared preferences.
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setDouble('balance', balance);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getfunction();
   }
 
   void getfunction() async {
@@ -62,23 +70,11 @@ class _MainAppState extends State<MainApp> {
                     SizedBox(height: 20),
                     Text("$balance"),
                     SizedBox(height: 20),
-                    OutlinedButton(
-                      onPressed: getfunction,
-                      child: Text("Balance"),
-                    ),
                   ],
                 ),
               ),
-              Expanded(
-                flex: 1,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    minimumSize: Size(double.infinity, 0),
-                  ),
-                  onPressed: setfunction,
-                  child: Text("Add Money"),
-                ),
+              AddMoney(
+                setfunction: setfunction,
               ),
             ],
           ),
