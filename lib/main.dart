@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MainApp());
@@ -16,11 +17,22 @@ class MainApp extends StatefulWidget {
 class _MainAppState extends State<MainApp> {
   double balance = 500;
 
-  void function() {
+  void setfunction() async {
     setState(() {
       balance += 500;
     });
     print(balance);
+
+    // Obtain shared preferences.
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setDouble('balance', balance);
+  }
+
+  void getfunction() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      balance = prefs.getDouble('balance') ?? 0;
+    });
   }
 
   @override
@@ -49,6 +61,11 @@ class _MainAppState extends State<MainApp> {
                     Text("Balance"),
                     SizedBox(height: 20),
                     Text("$balance"),
+                    SizedBox(height: 20),
+                    OutlinedButton(
+                      onPressed: getfunction,
+                      child: Text("Balance"),
+                    ),
                   ],
                 ),
               ),
@@ -59,7 +76,7 @@ class _MainAppState extends State<MainApp> {
                     backgroundColor: Colors.red,
                     minimumSize: Size(double.infinity, 0),
                   ),
-                  onPressed: function,
+                  onPressed: setfunction,
                   child: Text("Add Money"),
                 ),
               ),
