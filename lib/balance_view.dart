@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
+// ignore: must_be_immutable
 class BalanceView extends StatelessWidget {
   double balance;
   BalanceView({super.key, required this.balance});
@@ -15,7 +17,8 @@ class BalanceView extends StatelessWidget {
         children: [
           Text("Balance"),
           SizedBox(height: 20),
-          Text("$balance"),
+          Text("\$ ${NumberFormat.simpleCurrency(name: "").format(balance)}",
+              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
           SizedBox(height: 20),
         ],
       ),
