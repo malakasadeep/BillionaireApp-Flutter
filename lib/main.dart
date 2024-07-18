@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:bilionerapp/balance_view.dart';
 import 'package:bilionerapp/btn.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,17 +62,8 @@ class _MainAppState extends State<MainApp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                flex: 9,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Balance"),
-                    SizedBox(height: 20),
-                    Text("$balance"),
-                    SizedBox(height: 20),
-                  ],
-                ),
+              BalanceView(
+                balance: balance,
               ),
               AddMoney(
                 setfunction: setfunction,

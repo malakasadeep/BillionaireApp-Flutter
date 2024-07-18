@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AddMoney extends StatelessWidget {
   void Function() setfunction;
   AddMoney({super.key, required this.setfunction});
