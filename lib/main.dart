@@ -6,11 +6,21 @@ void main() {
   runApp(const MainApp());
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends StatefulWidget {
   const MainApp({super.key});
 
-  fun() {
-    print("button clicked");
+  @override
+  State<MainApp> createState() => _MainAppState();
+}
+
+class _MainAppState extends State<MainApp> {
+  double balance = 500;
+
+  void function() {
+    setState(() {
+      balance += 500;
+    });
+    print(balance);
   }
 
   @override
@@ -38,7 +48,7 @@ class MainApp extends StatelessWidget {
                   children: [
                     Text("Balance"),
                     SizedBox(height: 20),
-                    Text("0"),
+                    Text("$balance"),
                   ],
                 ),
               ),
@@ -49,7 +59,7 @@ class MainApp extends StatelessWidget {
                     backgroundColor: Colors.red,
                     minimumSize: Size(double.infinity, 0),
                   ),
-                  onPressed: fun,
+                  onPressed: function,
                   child: Text("Add Money"),
                 ),
               ),
